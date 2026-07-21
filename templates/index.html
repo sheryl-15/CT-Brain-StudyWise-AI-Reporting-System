@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CT Brain AI Reporting System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div id="toast"></div>
+
+<div id="analysisLoader" class="analysis-loader">
+    <div class="loader-box">
+        <h3 id="loaderTitle">Analysing CT Study</h3>
+        <p id="loaderText">Please wait while the selected series is being processed.</p>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <p class="loader-note" id="loaderStep">Preparing analysis...</p>
+    </div>
+</div>
+
+<header class="header">
+    <div class="header-content">
+        <h1>CT Brain Study-Wise AI Reporting System</h1>
+        <p>Clinical decision-support dashboard for CT brain normal / abnormal analysis</p>
+    </div>
+</header>
+
+<nav class="section-nav">
+    <a href="#search">Study Search</a>
+    <a href="#details">Study Details</a>
+    <a href="#series">Series</a>
+    <a href="#prediction">Result</a>
+    <a href="#preview">CT Slices</a>
+    <a href="#report">Report</a>
+</nav>
+
+<main class="main-layout">
+
+    <section class="card search-card" id="search">
+        <div class="section-title">
+            <h2>Study Search</h2>
+            <p>Enter the DICOM Study UID to retrieve available CT series from PACS.</p>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="studyUidInput" placeholder="Enter DICOM Study UID">
+            <button id="loadStudyBtn">Load Study</button>
+        </div>
+    </section>
+
+    <section class="card details-card" id="details">
+        <h2>Study Details</h2>
+
+        <div class="details-grid">
+            <div>
+                <h3>Patient Information</h3>
+                <div class="info-row"><label>Patient Name</label><p id="patientName">--</p></div>
+                <div class="info-row"><label>Patient ID</label><p id="patientId">--</p></div>
+                <div class="info-row"><label>Age</label><p id="patientAge">--</p></div>
+                <div class="info-row"><label>Gender</label><p id="patientGender">--</p></div>
+                <div class="info-row"><label>Study Date</label><p id="studyDate">--</p></div>
+            </div>
+
+            <div>
+                <h3>Study Information</h3>
+                <div class="info-row"><label>Study UID</label><p id="studyUid">--</p></div>
+                <div class="info-row"><label>Description</label><p id="studyDescription">--</p></div>
+                <div class="info-row"><label>Institution</label><p id="institution">--</p></div>
+                <div class="info-row"><label>Referring Doctor</label><p id="doctorName">--</p></div>
+                <div class="info-row"><label>Total Series</label><p id="totalSeries">--</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="card series-card full-card" id="series">
+        <div class="section-title">
+            <h2>Series Selection</h2>
+            <p>Select the CT brain series that should be analysed by the AI model.</p>
+        </div>
+
+        <select id="seriesSelect">
+            <option value="">Load study first to view series</option>
+        </select>
+
+        <button id="analyzeBtn">Analyze Selected Series</button>
+    </section>
+
+    <section class="card prediction-card" id="prediction">
+        <h2>AI Prediction Result</h2>
+
+        <div class="prediction-box">
+            <p class="prediction-text" id="predictionText">Waiting for Analysis</p>
+            <p class="prediction-subtext" id="predictionSubtext">
+                Prediction will appear after selected series analysis.
+            </p>
+        </div>
+
+        <div class="result-grid">
+            <div><label>Abnormal Probability</label><p id="probability">--</p></div>
+            <div><label>Risk Level</label><p id="riskLevel">--</p></div>
+            <div><label>Slices Analysed</label><p id="sliceCount">--</p></div>
+            <div><label>Selected Series</label><p id="selectedSeries">--</p></div>
+        </div>
+    </section>
+
+    <section class="card preview-card" id="preview">
+        <h2>Representative CT Slices</h2>
+
+        <div class="slice-preview">
+            <div><p>Slice Preview 1</p></div>
+            <div><p>Slice Preview 2</p></div>
+            <div><p>Slice Preview 3</p></div>
+        </div>
+    </section>
+
+    <section class="card report-card single-report" id="report">
+        <h2>AI Report Summary</h2>
+
+        <div class="info-row"><label>Study UID</label><p id="reportStudyUid">--</p></div>
+        <div class="info-row"><label>Series UID</label><p id="reportSeriesUid">--</p></div>
+        <div class="info-row"><label>Prediction</label><p id="reportPrediction">--</p></div>
+        <div class="info-row"><label>Generated Time</label><p id="generatedTime">--</p></div>
+
+        <button class="secondary-btn" id="downloadReportBtn">Download Report</button>
+    </section>
+
+</main>
+
+<footer>
+    This AI-generated result is intended for clinical decision support only and must be verified by a qualified radiologist.
+</footer>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

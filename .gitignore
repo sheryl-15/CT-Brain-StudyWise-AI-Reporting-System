@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual Environment
+venv/
+
+# Dataset
+downloads/
+dataset_raw/
+external_analysis/
+results/
+
+# Generated features
+features/
+
+# Generated preview images
+static/previews/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
