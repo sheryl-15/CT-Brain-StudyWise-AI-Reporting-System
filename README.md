@@ -192,12 +192,6 @@ The threshold was experimentally selected to improve sensitivity toward abnormal
 | 🎯 F1 Score | **76.68%** |
 | 🎯 ROC-AUC | **91.27%** |
 
-### Confusion Matrix
-
-| | Predicted Abnormal | Predicted Normal |
-|----|-----------------|----------------|
-| Actual Abnormal | 264 | 143 |
-| Actual Normal | 20 | 268 |
 
 ---
 
